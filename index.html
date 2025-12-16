@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manchester United Daily Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img class="crest" src="https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg" alt="Manchester United crest">
+      <div class="titles">
+        <h1>Manchester United Daily Blog</h1>
+        <p class="subtitle">Daily updates, news, and opinions</p>
+      </div>
+    </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search posts">
+      <input id="datePicker" type="date">
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="new-post">
+      <h2>Publish New Post</h2>
+      <form id="postForm">
+        <div class="grid">
+          <input id="title" type="text" placeholder="Title" required>
+          <select id="category" required>
+            <option value="News">News</option>
+            <option value="Match">Match</option>
+            <option value="Transfer">Transfer</option>
+            <option value="Training">Training</option>
+            <option value="Opinion">Opinion</option>
+          </select>
+        </div>
+        <textarea id="content" rows="6" placeholder="Write your post..." required></textarea>
+        <button type="submit" class="btn">Publish</button>
+      </form>
+    </section>
+
+    <section class="posts">
+      <div class="posts-header">
+        <h2 id="postsHeading">Posts</h2>
+        <span id="count" class="count"></span>
+      </div>
+      <div id="postsList" class="posts-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Unofficial fan-made blog. Not affiliated with Manchester United.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
