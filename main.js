@@ -120,25 +120,25 @@ function seedIfEmpty() {
   const d = todayStr();
   const samples = [
     {
+      title: "BREAKING: Ruben Amorim sacked after 2-1 defeat to West Ham",
+      category: "News",
+      content: "Manchester United have parted company with manager Ruben Amorim following Sunday’s 2-1 Premier League loss at the London Stadium. The board met late on Sunday evening and agreed a change was needed with the club sitting 14th in the table. First-team coach Ruud van Nistelrooy will take training on Monday morning while the club begin the search for a permanent successor.",
+      date: d,
+      createdAt: Date.now() - 1000 * 60 * 60
+    },
+    {
+      title: "Match report: West Ham 2-1 United – late drama costs Amorim",
+      category: "Match",
+      content: "A 94th-minute Tomas Soucek winner condemned United to defeat in east London. Alejandro Garnacho had cancelled out Bowen’s first-half opener, but United wilted under late pressure. The result leaves United with just two wins from their last nine league games and intensifies scrutiny on the Portuguese coach’s position.",
+      date: d,
+      createdAt: Date.now() - 1000 * 60 * 30
+    },
+    {
       title: "Training focus ahead of weekend fixture",
       category: "Training",
       content: "High-intensity drills and set-piece routines as the team prepares for the upcoming match.",
       date: d,
       createdAt: Date.now() - 1000 * 60 * 60
-    },
-    {
-      title: "Match preview: Key battles to watch",
-      category: "Match",
-      content: "Midfield control and wing play expected to be decisive. Confidence is building across the squad.",
-      date: d,
-      createdAt: Date.now() - 1000 * 60 * 30
-    },
-    {
-      title: "Transfer chatter: Academy prospects stepping up",
-      category: "Transfer",
-      content: "Attention on young talents earning minutes and impacting first-team dynamics.",
-      date: d,
-      createdAt: Date.now() - 1000 * 60 * 15
     }
   ];
   savePosts(samples.map(s => ({ id: s.createdAt, ...s })));
