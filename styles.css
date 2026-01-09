@@ -114,5 +114,8 @@ textarea { resize: vertical; }
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
 .auth-error { color: #ffb4b4; margin-top: 8px; font-size: 0.95rem; }
 
+.stadium-photo { max-width: 980px; margin: 18px auto; padding: 0 16px; }
+.stadium-image { width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--border); }
+
 .btn.small { padding: 8px 10px; font-size: 0.9rem; }
 .btn.disabled { opacity: 0.5; cursor: not-allowed; }

@@ -182,25 +182,25 @@ function seedIfEmpty() {
   const d = todayStr();
   const samples = [
     {
-      title: "BREAKING: Ruben Amorim sacked after 1-1 draw to leeds",
-      category: "News",
-      content: "Manchester United have parted ways with manager Ruben Amorim following Sunday’s 1-1 Premier League draw with leeds. Under 18's-team coach Darren Fletcher will take charge.",
-      date: d,
-      createdAt: Date.now() - 1000 * 60 * 60
-    },
-    {
-      title: "Match report: leeds 1-1 United – lack of results costs Amorim",
-      category: "Match",
-      content: "cunh's equalizer was not enough to save Amorim",
-      date: d,
-      createdAt: Date.now() - 1000* 60* 30
-    },
-    {
       title: "Training focus ahead of weekend fixture",
       category: "Training",
       content: "High-intensity drills and set-piece routines as the team prepares for the upcoming match.",
       date: d,
       createdAt: Date.now() - 1000 * 60 * 60
+    },
+    {
+      title: "Match preview: Key battles to watch",
+      category: "Match",
+      content: "Midfield control and wing play expected to be decisive. Confidence is building across the squad.",
+      date: d,
+      createdAt: Date.now() - 1000 * 60 * 30
+    },
+    {
+      title: "Transfer chatter: Academy prospects stepping up",
+      category: "Transfer",
+      content: "Attention on young talents earning minutes and impacting first-team dynamics.",
+      date: d,
+      createdAt: Date.now() - 1000 * 60 * 15
     }
   ];
   savePosts(samples.map(s => ({ id: s.createdAt, ...s })));
