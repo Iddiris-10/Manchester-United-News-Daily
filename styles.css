@@ -10,6 +10,9 @@
 }
 
 * { box-sizing: border-box; }
+
+/* utility */
+.hidden { display: none !important; }
 html, body { height: 100%; }
 body {
   margin: 0;
@@ -214,6 +217,10 @@ textarea { resize: vertical; }
   -webkit-text-fill-color: var(--light) !important;
   box-shadow: 0 0 0px 1000px #0f1112 inset !important;
 }
+
+/* Login notice */
+.login-notice { background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); color: var(--muted); margin-bottom: 12px; }
+.login-notice .btn { margin-left: 8px; }
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
 .auth-error { color: #ffb4b4; margin-top: 8px; font-size: 0.95rem; }
 

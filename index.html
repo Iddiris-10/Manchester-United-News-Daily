@@ -22,6 +22,8 @@
       <input id="search" type="search" placeholder="Search posts">
       <input id="datePicker" type="date">
       <button id="authBtn" class="btn small">Author Login</button>
+      <button id="changeBtn" class="btn small hidden">Change Password</button>
+      <span id="authStatus" class="auth-status hidden" style="margin-left:8px;color:var(--gold);font-weight:600"></span>
     </div>
   </header>
 
@@ -35,6 +37,8 @@
     </section>
 
     <main class="container">
+<div id="loginNotice" class="login-notice hidden">You must be logged in as the author to publish posts. <button id="authBtnSmall" class="btn small">Login</button></div>
+    <div id="publishWrapper">
       <section class="new-post">
         <h2>Publish New Post</h2>
         <form id="postForm">
@@ -52,6 +56,7 @@
           <button type="submit" class="btn">Publish</button>
         </form>
       </section>
+    </div>
 
       <section class="posts">
         <div class="posts-header">
@@ -78,6 +83,22 @@
           <button type="button" id="authCancel" class="btn">Cancel</button>
         </div>
         <p id="authError" class="auth-error" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <div id="changeModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Change Password</h3>
+      <form id="changeForm">
+        <input id="currentPw" type="password" placeholder="Current password" required>
+        <input id="newPw" type="password" placeholder="New password" required>
+        <input id="confirmPw" type="password" placeholder="Confirm new password" required>
+        <div class="modal-actions">
+          <button type="submit" class="btn">Change</button>
+          <button type="button" id="changeCancel" class="btn">Cancel</button>
+        </div>
+        <p id="changeError" class="auth-error" aria-live="polite"></p>
       </form>
     </div>
   </div>
