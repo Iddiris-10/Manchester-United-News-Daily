@@ -1,5 +1,7 @@
 const STORAGE_KEY = "mu_daily_blog_posts";
 const TEAM = "Manchester United";
+const AUTHOR_PASSWORD = "admin123"; // change this to your desired password
+const AUTH_KEY = "mu_author_auth";
 
 const searchInput = document.getElementById("search");
 const datePicker = document.getElementById("datePicker");
@@ -10,6 +12,12 @@ const contentInput = document.getElementById("content");
 const postsHeading = document.getElementById("postsHeading");
 const postsList = document.getElementById("postsList");
 const countEl = document.getElementById("count");
+const authModal = document.getElementById("authModal");
+const authBtn = document.getElementById("authBtn");
+const authForm = document.getElementById("authForm");
+const authPassword = document.getElementById("authPassword");
+const authCancel = document.getElementById("authCancel");
+const authError = document.getElementById("authError");
 
 const todayStr = () => new Date().toISOString().slice(0, 10);
 const formatTime = (d) => new Date(d).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -41,13 +49,13 @@ function postCard(p) {
 
   const actions = document.createElement("div");
   actions.className = "post-actions";
-
-  const delBtn = document.createElement("button");
-  delBtn.className = "icon-btn";
-  delBtn.textContent = "Delete";
-  delBtn.addEventListener("click", () => deletePost(p.id));
-
-  actions.appendChild(delBtn);
+  if (isAuth()) {
+    const delBtn = document.createElement("button");
+    delBtn.className = "icon-btn";
+    delBtn.textContent = "Delete";
+    delBtn.addEventListener("click", () => deletePost(p.id));
+    actions.appendChild(delBtn);
+  }
   header.appendChild(badge);
   header.appendChild(actions);
 
@@ -67,6 +75,26 @@ function postCard(p) {
   el.appendChild(meta);
   el.appendChild(body);
   return el;
+}
+
+function isAuth() {
+  return localStorage.getItem(AUTH_KEY) === "1";
+}
+
+function setAuth(val) {
+  if (val) localStorage.setItem(AUTH_KEY, "1");
+  else localStorage.removeItem(AUTH_KEY);
+  updateAuthUI();
+}
+
+function updateAuthUI() {
+  if (!authBtn) return;
+  authBtn.textContent = isAuth() ? "Logout" : "Author Login";
+  const publishBtn = postForm.querySelector('button[type=submit]');
+  if (publishBtn) {
+    publishBtn.disabled = !isAuth();
+    publishBtn.classList.toggle('disabled', !isAuth());
+  }
 }
 
 function render() {
@@ -104,6 +132,10 @@ postForm.addEventListener("submit", (e) => {
   const content = contentInput.value.trim();
   const category = categorySelect.value;
   if (!title || !content) return;
+  if (!isAuth()) {
+    alert('You must be logged in as the author to publish posts.');
+    return;
+  }
   addPost({ title, category, content });
   titleInput.value = "";
   contentInput.value = "";
@@ -113,6 +145,35 @@ postForm.addEventListener("submit", (e) => {
 
 searchInput.addEventListener("input", render);
 datePicker.addEventListener("change", render);
+
+// Authentication UI handlers
+if (authBtn) {
+  authBtn.addEventListener('click', () => {
+    if (isAuth()) return setAuth(false);
+    authModal.classList.remove('hidden');
+    authPassword.value = '';
+    authError.textContent = '';
+    authPassword.focus();
+  });
+}
+if (authCancel) {
+  authCancel.addEventListener('click', () => authModal.classList.add('hidden'));
+}
+if (authForm) {
+  authForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = authPassword.value || '';
+    if (v === AUTHOR_PASSWORD) {
+      setAuth(true);
+      authModal.classList.add('hidden');
+    } else {
+      authError.textContent = 'Invalid password';
+    }
+  });
+}
+
+// ensure UI reflects auth state on load
+updateAuthUI();
 
 function seedIfEmpty() {
   const posts = loadPosts();

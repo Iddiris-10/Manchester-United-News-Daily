@@ -21,6 +21,7 @@
     <div class="controls">
       <input id="search" type="search" placeholder="Search posts">
       <input id="datePicker" type="date">
+      <button id="authBtn" class="btn small">Author Login</button>
     </div>
   </header>
 
@@ -68,5 +69,20 @@
   </footer>
 
   <script src="main.js"></script>
+
+  <!-- Auth modal -->
+  <div id="authModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Author Login</h3>
+      <form id="authForm">
+        <input id="authPassword" type="password" placeholder="Password" required>
+        <div class="modal-actions">
+          <button type="submit" class="btn">Login</button>
+          <button type="button" id="authCancel" class="btn">Cancel</button>
+        </div>
+        <p id="authError" class="auth-error" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
